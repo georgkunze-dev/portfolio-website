@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/grid.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Startseite</title>
+</head>
+<body>
+  <div class="wrapper">
+      <header>
+        <nav class="pg-nav" id="hamburger">
+          <a href="./index.html" class="active">Startseite</a>
+          <a href="./sites/Plakate.html">Plakate</a>
+          <a href="./sites/Audio-Pieces.html">Audio-Pieces</a>
+          <a href="./sites/Fotos.html">Fotos</a>
+          <a href="./sites/Corporate Design.html">Corporate Design</a>
+          <a href="javascript:void(0);" class="icon" onclick="togglenav()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </nav>
+      </header>
+
+      <main>
+        <!-- Start Banner -->
+        <div class="background"> 
+          <div class="title-background">
+            <p class="titel">Georg Kunze</p>
+            <div class="linie"></div>
+            <p class="untertitel">Medieninformatikstudent</p>
+          </div>        
+        </div>
+        <!-- Main Content -->
+        <section class="grid-area" style="margin-top: 100vh;">
+          <div class="überschrift-container">
+            <p class="überschrift-shadow">Über mich</p> 
+            <p class="überschrift">Über mich</p>
+          </div>
+          <div class="grid-item1-2" style="text-align: center;"> <!-- Die Zahlen hinter dem "grid-item" bedeuten den grid-column-start und grid-column-end. In dem Fall grid-column-start: 1; grid-column-end: 2; -->
+            <img class="img-portrait" src="./assets/img/Portrait.jpg" alt="Georg Kunze">
+          </div> <!-- .grid-item1-2 -->
+          <div class="grid-item2-4" style="margin: 0 auto;">
+            <ul class="info">
+              <li><p>&#10141 <span style="font-weight: bold;">Name:</span> Georg Kunze</p></li>
+              <li><p>&#10141 <span style="font-weight: bold;">Website:</span> www.example.de</p></li>
+              <li><p>&#10141 <span style="font-weight: bold;">Telefon:</span> 01234 5678910</p></li>
+              <li><p>&#10141 <span style="font-weight: bold;">Wohnort:</span> Wernigerode</p></li>
+              <li><p>&#10141 <span style="font-weight: bold;">Alter:</span> 20</p></li>
+              <li><p>&#10141 <span style="font-weight: bold;">Abschluss:</span> Abitur</p></li>
+              <li><p>&#10141 <span style="font-weight: bold;">E-mail:</span> u36363@hs-harz.de</p></li>
+              <li><p>&#10141 <span style="font-weight: bold;">Studienstandort:</span> Wernigerode</p></li>
+            </ul>
+          </div> <!-- .grid-item2-4 -->
+          <div class="grid-item1-4">
+            <p class="text">
+              Mein Name ist Georg Kunze. Ich studiere aktuell Medieninformatik im zweiten Semester an der Hochschule Harz für angewandte Wissenschaften in Wernigerode. <br> <br>
+            </p>
+            <div class="video-map-wrapper">
+              <p>Studiengang Medieninformatik:</p>
+              <iframe class="yt-video" src="https://www.youtube.com/embed/O1uOU8YDivQ"></iframe>
+              <p>Standort der Hochschule Harz:</p>
+              <div id="mapdiv"></div>
+            </div>
+            <p class="text">
+              Mein Abitur habe ich in Halberstadt an dem Käthe-Kollwitz-Gymnasium gemacht. Vor dem Medieninformatikstudium habe ich das zwei Semester lange Orientierungsstudium Ebenfals an der Hochschule Harz abgeschlossen. <br> <br>
+              Auf den nachfolgenden Seiten präsentiere ich Arbeiten, die während des ersten Semesters meines Studiums entstanden sind.
+            </p>
+          </div> <!-- .grid-item1-4 --> 
+          <button onclick="topFunction()" id="myBtn" title="Go to top">➔</button>
+        </section> <!-- .grid-area -->
+      </main>
+
+      <footer>
+        <p> © Georg Kunze </p>
+        <p style="font-size: 18px; padding-top: 5px;"> <a href="./sites/Impressum.html">Impressum</a> und <a href="./sites/Datenschutzhinweise.html">Datenschutzhinweise</a> </p>
+      </footer>
+  </div> <!-- .wrapper -->
+  
+  <!-- Load JS at the end to improve loading times -->
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/back_to_top_button.js"></script>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <script>
+    map = new OpenLayers.Map("mapdiv");
+    map.addLayer(new OpenLayers.Layer.OSM());
+
+    var lonLat = new OpenLayers.LonLat( 10.75950444 ,51.82731744 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // Transformation aus dem Koordinatensystem WGS 1984
+            map.getProjectionObject() // in das Koordinatensystem 'Spherical Mercator Projection'
+          );
+
+    var zoom=17;
+
+    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+
+    markers.addMarker(new OpenLayers.Marker(lonLat));
+    map.setCenter (lonLat, zoom);
+  </script>
+</body>
+</html>
